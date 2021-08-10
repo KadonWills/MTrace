@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,500;0,600;0,800;0,900;1,100;1,200;1,300;1,500;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+body {
+    background-color: #67748e27 !important;
+    font-family: 'Poppins' !important;
+}
+
+.go-btn {
+    float: right;
+    font-weight: bold;
+    transition: 0.25s linear;
+}
+
+.go-btn:hover {
+    float: right;
+}
+
+.card {
+    box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);
+    color: black !important;
+    overflow: hidden;
+    border: none !important;
+    transition: 0.25s linear;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    border: none;
+    overflow: visible;
+}
+
+img.card-illust {
+    width: 25%;
+    position: absolute;
+    bottom: -5%;
+    left: -10%;
+    transform: translate( 10%, 30%);
+}
+
+.card.snppk:hover {
+    color: white !important;
+    filter: drop-shadow(3px 3px 6px rgb(16, 6, 189, 0.418));
+    background: rgb(0, 184, 255);
+    background: -moz-linear-gradient(177deg, rgba(0, 184, 255, 1) 0%, rgba(0, 75, 236, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(0, 184, 255, 1) 0%, rgba(0, 75, 236, 1) 100%);
+    background: linear-gradient(177deg, rgba(0, 184, 255, 1) 0%, rgba(0, 75, 236, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00b8ff", endColorstr="#004bec", GradientType=1);
+}
+
+.card.snppk :not(:hover)>.go-btn {
+    color: white;
+    filter: drop-shadow( 3px 3px 6px rgb(16, 6, 189, 0.418));
+    background: rgb(0, 184, 255);
+    background: -moz-linear-gradient(177deg, rgba(0, 184, 255, 1) 0%, rgba(0, 75, 236, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(0, 184, 255, 1) 0%, rgba(0, 75, 236, 1) 100%);
+    background: linear-gradient(177deg, rgba(0, 184, 255, 1) 0%, rgba(0, 75, 236, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00b8ff", endColorstr="#004bec", GradientType=1);
+}
+
+.card.am:hover {
+    color: white !important;
+    filter: drop-shadow( 3px 3px 6px rgb(108, 6, 189, 0.418));
+    background: -moz-linear-gradient(0deg, rgba(108, 6, 189, 1) 0%, rgba(244, 0, 255, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(108, 6, 189, 1) 0%, rgba(244, 0, 255, 1) 100%);
+    background: linear-gradient(0deg, rgba(108, 6, 189, 1) 0%, rgba(244, 0, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#6c06bd", endColorstr="#f400ff", GradientType=1);
+}
+
+.card.am :not(:hover)>.go-btn {
+    color: white;
+    box-shadow: 3px 3px 6px rgb(108, 6, 189, 0.418);
+    background: -moz-linear-gradient(0deg, rgba(108, 6, 189, 1) 0%, rgba(244, 0, 255, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(108, 6, 189, 1) 0%, rgba(244, 0, 255, 1) 100%);
+    background: linear-gradient(0deg, rgba(108, 6, 189, 1) 0%, rgba(244, 0, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#6c06bd", endColorstr="#f400ff", GradientType=1);
+}
+
+.card.ba:hover {
+    color: white !important;
+    filter: drop-shadow( 3px 3px 6px rgb(0, 255, 159, 0.418));
+    background: -moz-linear-gradient(177deg, rgba(0, 255, 159, 1) 0%, rgba(0, 129, 255, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(0, 255, 159, 1) 0%, rgba(0, 129, 255, 1) 100%);
+    background: linear-gradient(177deg, rgba(0, 255, 159, 1) 0%, rgba(0, 129, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00ff9f", endColorstr="#0081ff", GradientType=1);
+}
+
+.card.ba :not(:hover)>.go-btn {
+    color: white;
+    box-shadow: 3px 3px 6px rgb(0, 255, 159, 0.418);
+    background: -moz-linear-gradient(177deg, rgba(0, 255, 159, 1) 0%, rgba(0, 129, 255, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(0, 255, 159, 1) 0%, rgba(0, 129, 255, 1) 100%);
+    background: linear-gradient(177deg, rgba(0, 255, 159, 1) 0%, rgba(0, 129, 255, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00ff9f", endColorstr="#0081ff", GradientType=1);
+}
+
+.card.ac:hover {
+    color: white !important;
+    filter: drop-shadow( 3px 3px 6px rgb(255, 244, 0, 0.418));
+    background: -moz-linear-gradient(177deg, rgba(255, 244, 0, 1) 0%, rgba(255, 107, 0, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(255, 244, 0, 1) 0%, rgba(255, 107, 0, 1) 100%);
+    background: linear-gradient(177deg, rgba(255, 244, 0, 1) 0%, rgba(255, 107, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#fff400", endColorstr="#ff6b00", GradientType=1);
+}
+
+.card.ac :not(:hover)>.go-btn {
+    color: white;
+    box-shadow: 3px 3px 6px rgb(255, 244, 0, 0.418);
+    background: -moz-linear-gradient(177deg, rgba(255, 244, 0, 1) 0%, rgba(255, 107, 0, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(255, 244, 0, 1) 0%, rgba(255, 107, 0, 1) 100%);
+    background: linear-gradient(177deg, rgba(255, 244, 0, 1) 0%, rgba(255, 107, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#fff400", endColorstr="#ff6b00", GradientType=1);
+}
+
+.card.pf:hover {
+    color: white !important;
+    filter: drop-shadow( 3px 3px 6px rgb(255, 154, 0, 0.418));
+    background: -moz-linear-gradient(177deg, rgba(255, 154, 0, 1) 0%, rgba(236, 0, 0, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(255, 154, 0, 1) 0%, rgba(236, 0, 0, 1) 100%);
+    background: linear-gradient(177deg, rgba(255, 154, 0, 1) 0%, rgba(236, 0, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#ff9a00", endColorstr="#ec0000", GradientType=1);
+}
+
+.card.pf :not(:hover)>.go-btn {
+    color: white;
+    box-shadow: 3px 3px 6px rgb(255, 154, 0, 0.418);
+    background: -moz-linear-gradient(177deg, rgba(255, 154, 0, 1) 0%, rgba(236, 0, 0, 1) 100%);
+    background: -webkit-linear-gradient(177deg, rgba(255, 154, 0, 1) 0%, rgba(236, 0, 0, 1) 100%);
+    background: linear-gradient(177deg, rgba(255, 154, 0, 1) 0%, rgba(236, 0, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#ff9a00", endColorstr="#ec0000", GradientType=1);
+}
+
+.card.cbt:hover {
+    color: white !important;
+    filter: drop-shadow( 3px 3px 6px rgb(0, 219, 22, 0.418));
+    background: -moz-linear-gradient(0deg, rgba(0, 219, 22, 1) 0%, rgba(236, 226, 0, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0, 219, 22, 1) 0%, rgba(236, 226, 0, 1) 100%);
+    background: linear-gradient(0deg, rgba(0, 219, 22, 1) 0%, rgba(236, 226, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00db16", endColorstr="#ece200", GradientType=1);
+}
+
+.card.cbt :not(:hover)>.go-btn {
+    color: white;
+    filter: drop-shadow( 3px 3px 6px rgb(0, 219, 22, 0.418));
+    background: -moz-linear-gradient(0deg, rgba(0, 219, 22, 1) 0%, rgba(236, 226, 0, 1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(0, 219, 22, 1) 0%, rgba(236, 226, 0, 1) 100%);
+    background: linear-gradient(0deg, rgba(0, 219, 22, 1) 0%, rgba(236, 226, 0, 1) 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#00db16", endColorstr="#ece200", GradientType=1);
+}
