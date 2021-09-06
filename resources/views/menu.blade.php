@@ -17,7 +17,7 @@
                   <div class="card-body">
                     <p class="card-text "> Portail : </p>
                     <h4 class="card-title  col-12 text-center">Artisan Minier</h4>
-                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('login', ['as' => "AM"])}}">
+                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('home', ['as' => "AM"])}}">
                     Go >
                     </a>
                   </div>
@@ -30,7 +30,7 @@
                   <div class="card-body">
                     <p class="card-text "> Portail : </p>
                     <h4 class="card-title  col-12 text-center">Artisan Collecteur</h4>
-                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('login', ['as' => "AC"])}}">
+                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('home', ['as' => "AC"])}}">
                     Go >
                     </a>
                   </div>
@@ -44,7 +44,7 @@
                   <div class="card-body">
                   <p class="card-text ">Portail :</p>
                     <h4 class="card-title  col-12 text-center">Bureau d'Achat</h4>
-                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('login', ['as' => "BA"])}}">
+                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('home', ['as' => "BA"])}}">
 
                     Go >
                     </a>
@@ -59,7 +59,7 @@
                   <div class="card-body">
                     <p class="card-text "> Portail : </p>
                     <h4 class="card-title  col-12 text-center">Point Focale</h4>
-                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('login', ['as' => "PF"])}}">
+                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('home', ['as' => "PF"])}}">
                     Go >
                     </a>
                   </div>
@@ -72,7 +72,7 @@
                   <div class="card-body">
                     <p class="card-text "> Portail : </p>
                     <h4 class="card-title  col-12 text-center">CBT-CI</h4>
-                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('login', ['as' => "CB"])}}">
+                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('home', ['as' => "CB"])}}">
                     Go >
                     </a>
                   </div>
@@ -85,7 +85,7 @@
                   <div class="card-body">
                     <p class="card-text">Portail : </p>
                     <h4 class="card-title col-12 text-center">BEED</h4>
-                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('login', ['as' => "BE"])}}">
+                    <a class="btn btn-sm btn-light rounded-pill go-btn" href="{{route('home', ['as' => "BE"])}}">
                     Go >
                     </a>
                   </div>

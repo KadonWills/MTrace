@@ -27,7 +27,7 @@ class CreateMiningSalesTable extends Migration
             $table->foreign('collector_id')
             ->unsigned()
             ->references('id')
-            ->on('user');
+            ->on('users');
             $table->integer('mining_zone_id')->foreign()->unsigned();
             $table->foreign('mining_zone_id')
             ->unsigned()

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,8 +15,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\User::factory(1)->create();
-        //\App\Models\MiningZone::factory(2)->create();
-        //\App\Models\MiningProduction::factory(1)->create();
+        $this->call([
+            UserSeeder::class,
+            RoleSeeder::class, 
+            PermissionSeeder::class,
+            UserRoleSeeder::class, 
+            RolePermissionSeeder::class
+        ]); 
     }
 }

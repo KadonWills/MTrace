@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
+use Facade\FlareClient\Http\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,30 +22,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/menu', function () {
-    return view('menu');
-})->name('menu');
+// Génération automatique des routes pour la gestion de l'authentification
+Auth::routes(); 
 
- Route::get('/login', function () {
-    //  $data = [];
-    //  switch ($as) {
-    //      case 'AM' :
-    //          $data['bg_image'] = "/img/curved-images/curved-8.jpg";
-    //          break;
-    //      default :
-    //          $data['bg_image'] = "/img/logo.png";
-    //      break;
-    //  }
-    //  return $as;
-    return view('login');
+Route::middleware('auth')->group(function(){
+    Route::get('/home', [HomeController::class, 'index'])->name('home'); 
 
- })->name('login');
+    Route::get('/menu', function () {return view('menu');})->name('menu'); 
 
-Route::get('/artisan-minier', function () {
-    $code = 'AM';
-    return view('miner', compact('code'));
-})->name('miner');
+    Route::get('/users', function () {return view('dashboard.users');})->name('users');   
+});
 
-Auth::routes();
+Route::middleware('guest')->group( function(){
 
-/*Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');*/
+}); 
+

@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class MiningProduction extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
 }
