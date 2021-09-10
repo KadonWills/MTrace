@@ -73,28 +73,16 @@
         <div class="position-sticky pt-3" style="height:100vh; overflow-y: scroll">
           <ul class="nav flex-column ">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ route('users') }}">
+              <a class="nav-link active" aria-current="page" href="{{ route('user') }}">
                 <i class="fa fa-cog fa-spin" aria-hidden="true"></i>
                 Tableau De Bord
               </a>
             </li>
 
-            {{-- Dashboard --}}
-            @if( count( array_intersect(["liste-utilisateur", "creer-utilisateur", "modifier-utilisateur","supprimer-utilisateur", "imprimer-utilisateur",
-                 "rechercher-utilisateur"], $permissions ) ) )
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('users') }}">
-                <i class="fa fa-user-circle" aria-hidden="true"></i>
-                Dashboard
-              </a>
-            </li>
-            @endif
-
             {{-- Manage Users --}}
-            @if( count( array_intersect(["liste-utilisateur", "creer-utilisateur", "modifier-utilisateur","supprimer-utilisateur", "imprimer-utilisateur",
-                 "rechercher-utilisateur"], $permissions ) ) )
+            @if( in_array('list-user', $permissions) )
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users') }}">
+              <a class="nav-link" href="{{ route('user') }}">
                 <i class="fa fa-user-circle" aria-hidden="true"></i>
                 Utilisateurs
               </a>
@@ -102,42 +90,39 @@
             @endif
 
               <!-- Manage Zones -->
-              @if( count( array_intersect(["liste-location", "creer-location", "modifier-location","supprimer-location", "imprimer-location",
-              "rechercher-location"], $permissions ) ) )
+              @if( in_array('list-mining_zone', $permissions) )
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users') }}">
+              <a class="nav-link" href="{{ route('mining_zone') }}">
                 <i class="fa fa-building" aria-hidden="true"></i>
                 Zones
               </a>
             </li>
             @endif
-              <!-- Manage productions -->
-              @if( count( array_intersect(["liste-vente", "creer-vente", "modifier-vente","supprimer-vente", "imprimer-vente",
-              "rechercher-vente"], $permissions ) ) )
+
+            <!-- Manage productions -->
+            @if( in_array('list-mining_production', $permissions) )
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users') }}">
+              <a class="nav-link" href="{{ route('mining_production') }}">
                 <i class="fa fa-dollar-sign" aria-hidden="true"> </i>
                 Productions
               </a>
             </li>
             @endif
 
-             <!-- Manage Sells -->
-             @if( count( array_intersect(["liste-categorie", "creer-categorie", "modifier-categorie","supprimer-categorie", "imprimer-categorie",
-             "rechercher-categorie"], $permissions ) ) )
+            <!-- Manage Sales -->
+            @if( in_array('list-mining_sale', $permissions) )
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users') }}">
+              <a class="nav-link" href="{{ route('mining_sale') }}">
                 <i class="fa fa-list-alt" aria-hidden="true"> </i>
                 Ventes
               </a>
             </li>
             @endif
 
-             <!-- Manage Logs -->
-             @if( count( array_intersect(["liste-categorie", "creer-categorie", "modifier-categorie","supprimer-categorie", "imprimer-categorie",
-             "rechercher-categorie"], $permissions ) ) )
+            <!-- Manage Logs -->
+            @if( in_array('list-mining_log', $permissions) )
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('users') }}">
+              <a class="nav-link" href="{{ route('mining_log') }}">
                 <i class="fa fa-list-alt" aria-hidden="true"> </i>
                 Ventes
               </a>
@@ -168,8 +153,6 @@
 
         @yield('main', "Tableau De Bord")
 
-
-
       </main>
     </div>
   </div>
@@ -179,8 +162,6 @@
   <script src="{{ asset('js/chart.min.js')}}"></script>
   <script src="{{ asset('js/datatables.min.js')}}"></script>
   <script src="{{ asset('js/dashboard.js')}}"></script>
-  <script src="{{ asset('js/admin.js')}}"></script>
-
   @yield('scripts')
 
 </body>

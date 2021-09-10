@@ -18,21 +18,22 @@ Gestion des Utilisateurs
                     <h4 class="card-title">Gestion des Utilisateurs</h4>
                 </div>
                 <div class="col-4 float-right text-right">
-                    @if (in_array('creer-actualite', $permissions))
-                    <a href="javascript:void(0)" class="btn btn-sm btn-blue" id="createNewsBtn">
+                    @if (in_array('create-user', $permissions))
+                    <a href="javascript:void(0)" class="btn btn-sm btn-blue" id="createUserBtn">
                         <i class="fas fa-plus"></i> </a>
                     @endif
                 </div>
             </div>
 
             <div class="card-body">
-                @if (in_array('liste-actualite', $permissions) )
+                @if (in_array('list-user', $permissions) )
                 <div class="">
-                    <table id="newsTable" class="table table-bordered data-table showNews editNews deleteNews">
+                    <table id="usersTable" class="table table-bordered data-table showUser editUser deleteUser">
                         <thead>
                             <tr>
-                                <th>Image</th>
-                                <th>Titre</th>
+                                <th>Avatar</th>
+                                <th>Nom et Prénom</th>
+                                <th>Fonction</th>
                                 <th>Statut</th>
                                 <th>Date Ajout</th>
                                 <th>Actions</th>
@@ -43,8 +44,8 @@ Gestion des Utilisateurs
                     </table>
                 </div>
 
-                {{-- BEGIN MODAL News --}}
-                <div class="modal fade" id="newsModal" aria-hidden="true">
+                {{-- BEGIN MODAL Users --}}
+                <div class="modal fade" id="userModal" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -54,46 +55,96 @@ Gestion des Utilisateurs
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <form id="newsForm" name="newsForm" enctype="multipart/form-data">
-                                    <input type="hidden" name="newsId" id="newsId">
+                                <form id="userForm" name="userForm" enctype="multipart/form-data">
+                                    <input type="hidden" name="userId" id="userId">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                                     <div class="form-group mt-2">
-                                        <label for="title" class="control-label">Titre</label>
-                                        <input type="text" class="form-control" id="title" name="title"
-                                            placeholder="Saisir le titre de l'actualité" value="">
+                                        <label for="firstname" class="control-label">Nom de l'utilisateur</label>
+                                        <input type="text" class="form-control" id="firstname" name="firstname"
+                                            placeholder="Saisir le nom de l'utilisateur" value="">
                                     </div>
 
                                     <div class="form-group mt-2">
-                                        <label for="title_en" class="control-label">Titre (anglais)</label>
-                                        <input type="text" class="form-control" id="title_en" name="title_en"
-                                            placeholder="Saisir le titre de l'actualité en anglais" value="">
+                                        <label for="lastname" class="control-label">Prénom de l'utilisateur</label>
+                                        <input type="text" class="form-control" id="lastname" name="lastname"
+                                            placeholder="Saisir le prénom de l'utilisateur" value="">
                                     </div>
 
                                     <div class="form-group mt-2">
-                                        <label for="title_es" class="control-label">Titre (espagnol)</label>
-                                        <input type="text" class="form-control" id="title_es" name="title_es"
-                                            placeholder="Saisir le titre de l'actualité en espagnol" value="">
+                                        <label for="email" class="control-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="Saisir l'adresse mail" value="">
                                     </div>
 
-                                    <div id="userInfoSection"></div>
+                                    <div class="form-group mt-2">
+                                        <label for="username" class="control-label">username</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            placeholder="Saisir le login de l'utilisateur" value="">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="password" class="control-label">Mot de passe</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Saisir le mot de passe de l'utilisateur" value="">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="dob" class="control-label">Date de naissance</label>
+                                        <input type="date" class="form-control" id="dob" name="dob"
+                                            placeholder="Choisir date naissance de l'utilisateur" value="">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="contact" class="control-label">Contact</label>
+                                        <input type="tel" class="form-control" id="contact" name="contact"
+                                            placeholder="Saisir le contact de l'utilisateur" value="">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="prospector_card_num" class="control-label">Num carte prospecteur</label>
+                                        <input type="number" class="form-control" id="prospector_card_num" name="prospector_card_num"
+                                            placeholder="Saisir le numéra de carte prospecteur" value="">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="cni" class="control-label">Numéro CNI</label>
+                                        <input type="numer" class="form-control" id="cni" name="cni"
+                                            placeholder="Saisir le numéro de CNI" value="">
+                                    </div>
+
+                                    <div class="form-group mt-2">
+                                        <label for="profession" class="control-label">Profession</label>
+                                        <input type="text" class="form-control" id="profession" name="profession"
+                                            placeholder="Saisir la profession de l'utilisateur" value="">
+                                    </div>
 
                                     <div class="form-group mt-3">
-                                        {{-- ACTIVE => l'actualité est active et donc visible par les visiteurs du site
-                                        et INACVITE => l'actualité n'est pas visible par les visiteurs --}}
-                                        <label class="control-label">Statut de l'actualité</label><br><br>
-                                        <label class="control-label" for="news_visible">Actualité visible</label>
-                                        <input type="radio" name="status" value="ACTIVE" id="news_visible">
-                                        <label class="control-label" for="news_notvisible">Actualité non visible</label>
-                                        <input type="radio" name="status" value="INACTIVE" id="news_notvisible">
+                                        <label class="control-label">Statut du compte utilisateur</label><br><br>
+                                        <label class="control-label" for="user_activated">Compte activé</label>
+                                        <input type="radio" name="status" value="ACTIVE" id="user_activated">
+                                        <label class="control-label" for="user_deactivated">Compte désactivé</label>
+                                        <input type="radio" name="status" value="INACTIVE" id="user_deactivated">
                                     </div>
 
-                                    {{-- News Image Section Begin  --}}
                                     <div class="form-group mt-2">
-                                        <label for="newsImg">Charger une image pour l'actualité</label>
-                                        <input type="file" name="newsImg" accept=".png,.jpeg,.jpg" required="required"
-                                            id="newsImg"
-                                            onchange="previewFile(this, '#previewNewsImg', '#checkNewsImgFormat');">
+                                        <label for="role" class="control-label">Choisir le rôle de l'utilisateur</label>
+                                        <select name="roleId" id="role" class="form-control"
+                                            required>
+                                            <option disabled selected value="">Choisir un rôle</option>
+                                            @foreach ($roles as $role)
+                                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    {{-- User Image Section Begin  --}}
+                                    {{-- TODO : inserer la fonctionnalité d'ajout de la photo de profil --}}
+                                    <div class="form-group mt-2">
+                                        <label for="userImg">Charger la photo de profil de l'utilisateur</label>
+                                        <input type="file" name="userImg" accept=".png,.jpeg,.jpg" required="required"
+                                            id="userImg"
+                                            onchange="previewFile(this, '#previewUserImg', '#checkUserImgFormat');">
                                         <small class="form-text text-muted"><span id="constraints">Extensions
                                                 autorisées:
                                                 PNG,JPEG,JPG. Taille Max: 2Mo <br>
@@ -101,30 +152,14 @@ Gestion des Utilisateurs
                                             </span></small>
                                     </div>
                                     <div class="form-group mb-2">
-                                        <img id="previewNewsImg" alt="Aucun aperçu" width="250px" height="250px" />
-                                        <span id="checkNewsImgFormat"></span>
+                                        <img id="previewUserImg" alt="Aucun aperçu" width="250px" height="250px" />
+                                        <span id="checkUserImgFormat"></span>
                                     </div>
-                                    {{-- News Image Section End  --}}
+                                    {{-- User Image Section End  --}}
 
-                                    <div class="form-group mt-3">
-                                        <label for="description" class="control-label">Contenu de l'actualité</label>
-                                        <textarea name="description" id="description" class="form-control"></textarea>
-                                    </div>
-
-                                    <div class="form-group mt-3">
-                                        <label for="description_en" class="control-label">Contenu de l'actualité
-                                            (anglais)</label>
-                                        <textarea name="description_en" id="description_en" class="form-control"></textarea>
-                                    </div>
-
-                                    <div class="form-group mt-3">
-                                        <label for="description_es" class="control-label">Contenu de l'actualité
-                                            (espagnol)</label>
-                                        <textarea name="description_es" id="description_es" class="form-control"></textarea>
-                                    </div>
 
                                     <div class="col-sm-offset-2 col-sm-10 mt-3">
-                                        <button type="submit" class="btn btn-primary" id="saveNewsBtn"
+                                        <button type="submit" class="btn btn-primary" id="saveUserBtn"
                                             value="create">Enregistrer
                                         </button>
                                     </div>
@@ -133,7 +168,7 @@ Gestion des Utilisateurs
                         </div>
                     </div>
                 </div>
-                {{-- END MODAL News --}}
+                {{-- END MODAL User --}}
 
                 @endif
             </div>
@@ -147,16 +182,19 @@ Gestion des Utilisateurs
 {{-- <script src="{{ asset('js/admin.js')}}"></script> --}}
 <script>
     let datatableSettings = getDTSetting()
-    news_list = []
-    inputList = ['title', 'title_en', 'title_es', 'description', 'description_en', 'description_es']
+    let user_list = []
+    let roles = JSON.parse(`<?= json_encode($roles) ?>`)
+    inputList = ['firstname', 'lastname', 'email', 'username', 'contact', 'prospector_card_num', 
+        'cni', 'profession', 'status', 'dob', 'role'
+    ]
 
-    function loadNewsDatatable() {
+    function loadUsersDatatable() {
 
-        loadRessourceDatatable('/admin/news',
+        loadRessourceDatatable('/users',
             (data) => {
                 let response = JSON.parse(data);
-                news_list = response;
-                loadData('#newsTable', response,
+                user_list = response;
+                loadData('#usersTable', response,
                     [
                        {
                           data: 'image',
@@ -165,12 +203,15 @@ Gestion des Utilisateurs
                           }
                        },
                        {
-                            data: 'title'
+                            data: 'firstname'
+                        },
+                        {
+                            data: 'fonction'
                         },
                         {
                             data: 'status',
                             render: (data, type, row) => {
-                                return data == "ACTIVE" ? "VISIBLE" : "NON VISIBLE"
+                                return data == "ACTIVE" ? "COMPTE ACTIVÉ" : "COMPTE DESACTIVÉ"
                             }
                         },
                         {
@@ -185,122 +226,107 @@ Gestion des Utilisateurs
                     ],
                 )
                
-                $('.showNews').click(e => {
+                $('.showUser').click(e => {
                     e.preventDefault();
-                    let newsId = getResourceId(e.target)
+                    let userId = getResourceId(e.target)
                     if (!eventController(e.target, "show")) return
-                    let news = news_list.find((news) => news.id == newsId)
+                    let user = user_list.find((user) => user.id == userId)
 
                     // show the image
-                    $(`#previewNewsImg`).prop('src', news.image)
-                    $(`#newsImg`).prop('disabled', true)
-
-                    //Show user information if the annonce provide from the frontend side
-                    if (news.user_id) {
-                        user = news.user;
-                        userHTMLInfo = `
-                           <div class="form-group mt-2">
-                               <label for="username">Nom de l'utilisateur</label>
-                               <input type="text" class="form-control" id="username" value="${user.firstname} ${user.lastname}" disabled/>
-                           </div>
-                       `
-                        // Set HTML of the user information section
-                        $("#userInfoSection").html(userHTMLInfo)
-                    }
+                    $(`#previewUserImg`).prop('src', user.image)
+                    $(`#userImg`).prop('disabled', true)
 
                     inputList.forEach(input => {
-                        $(`#${input}`).val(news[input])
+                        $(`#${input}`).val(user[input])
                         $(`#${input}`).prop('disabled', true)
                     });
                     $("input[name='status']").prop('disabled', true)
 
-                    if (news.status === "ACTIVE")
-                        $('#news_visible').prop('checked', true)
+                    if (user.status === "ACTIVE")
+                        $('#user_activated').prop('checked', true)
                     else
-                        $('#news_notvisible').prop('checked', true)
+                        $('#user_deactivatede').prop('checked', true)
 
-                    $('#saveNewsBtn').hide();
-                    $('#modalHeading').html(news.title);
-                    $('#newsModal').modal('show');
+                    $('#password').prop('disabled', true)
+
+                    let options = ''
+                    roles.forEach(role => {
+                        options += `<option value="${role.id}" ${role.id == user.role_id ? 'selected' : ''}>${role.name}</option>`
+                    })
+                    $('#role').html(options)
+                    $('#role').prop('disabled', true)
+
+                    $('#saveUserBtn').hide();
+                    $('#modalHeading').html(user.firstname);
+                    $('#userModal').modal('show');
                 })
                 
-                $('.editNews').click(function (e) {
+                $('.editUser').click(function (e) {
                     e.preventDefault();
-                    newsId = getResourceId(e.target)
+                    userId = getResourceId(e.target)
                     if (!eventController(e.target, "edit")) return
-                    let news = news_list.find((news) => news.id == newsId);
+                    let user = user_list.find((user) => user.id == userId);
                     inputList.forEach(input => {
-                        $(`#${input}`).val(news[input])
+                        $(`#${input}`).val(user[input])
                         $(`#${input}`).prop('disabled', false)
                     })
 
-                    if (news.status === "ACTIVE")
-                        $('#news_visible').prop('checked', true)
+                    $('password').prop('disabled', false)
+
+                    if (user.status === "ACTIVE")
+                        $('#user_activated').prop('checked', true)
                     else
-                        $('#news_notvisible').prop('checked', true)
+                        $('#user_deactivatede').prop('checked', true)
 
-                    //Show user information if the news provide from the frontend side
-                    if (news.user_id) {
-                        user = news.user;
-                        userHTMLInfo = `
-                           <div class="form-group mt-2">
-                               <label for="username">Nom de l'utilisateur</label>
-                               <input type="text" class="form-control" id="username" value="${user.firstname} ${user.lastname}" disabled/>
-                           </div>
-                       `
-                        // Set HTML of the user information section
-                        $("#userInfoSection").html(userHTMLInfo)
-                    }
+                    $(`#previewUserImg`).prop('src', user.image)
+                    $(`#userImg`).removeAttr('disabled')
+                    $(`#userImg`).removeAttr('required')
+                    $("#checkUserImgFormat").html('')
 
-                    $(`#previewNewsImg`).prop('src', news.image)
-                    $(`#newsImg`).removeAttr('disabled')
-                    $(`#newsImg`).removeAttr('required')
-                    $("#checkNewsImgFormat").html('')
-
-                    $('#newsId').val(newsId);
-                    $('#modalHeading').html('Modification de l\'actualité ' + news.title);
-                    $('#saveNewsBtn').show();
-                    $('#saveNewsBtn').html('Enregistrer');
-                    $('#newsModal').modal('show');
+                    $('#userId').val(userId);
+                    $('#modalHeading').html('Modification de l\'utilisateur ' + user.firstname);
+                    $('#saveUserBtn').show();
+                    $('#saveUserBtn').html('Enregistrer');
+                    $('#userModal').modal('show');
                 })
 
-                $('.deleteNews').click(e => {
+                $('.deleteUser').click(e => {
                     e.preventDefault();
-                    newsId = getResourceId(e.target)
+                    userId = getResourceId(e.target)
                     if (!eventController(e.target, "delete")) return
-                    let news = news_list.find((news) => news.id == newsId)
+                    let user = user_list.find((user) => user.id == userId)
                     let resp = confirm(
-                        `Voulez vous vraiment supprimer l'actualité << ${news.title} >> ?`)
+                        `Voulez vous vraiment supprimer l'utilisateur << ${user.name} >> ?`)
                     if (!resp) return;
                     $.ajax({
                         type: 'DELETE',
-                        url: `{{ route('home') }}` + '/' + newsId,
+                        url: `{{ route('users') }}` + '/' + userId,
                         data: {
                             _token: "{{ csrf_token() }}"
                         },
                         dataType: 'json',
                         success: function (data) {
-                            $('#newsTable').DataTable().destroy();
-                            loadNewsDatatable();
+                            $('#userTable').DataTable().destroy();
+                            loadUsersDatatable();
                         },
                         error: function (data) {
                             alert(
-                                `Une erreur s\'est produit lors de la suppression de l'actualité << ${news.title} >>`
+                                `Une erreur s\'est produit lors de la suppression de l'utilisateur << ${user.firstname} >>`
                             )
-                            $('#saveNewsBtn').html('Enregistrer');
+                            $('#saveUserBtn').html('Enregistrer');
                         }
                     });
                 })
 
-                // Validation of the news form
-                $('#newsForm').submit(function (e) {
+                // Validation of the user form
+                $('#userForm').submit(function (e) {
                     e.preventDefault();
-                    $("#saveNewsBtn").html('Enregistrement en cours...');
+                    $("#saveUserBtn").html('Enregistrement en cours...');
                     let formData = new FormData();
                     formData.append("_token", "{{ csrf_token() }}")
-                    formData.append('newsId', $('#newsId').val());
+                    formData.append('userId', $('#userId').val());
                     formData.append('status', $("input[name='status']").val())
-                    formData.append('newsImg', $("#newsImg")[0].files[0])
+                    formData.append('userImg', $("#userImg")[0].files[0])
 
                     for (let k = 0; k < inputList.length; k++) {
                         formData.append(inputList[k], $(`#${inputList[k]}`).val())
@@ -308,7 +334,7 @@ Gestion des Utilisateurs
 
                     $.ajax({
                         data: formData,
-                        url: "{{ route('home') }}",
+                        url: "{{ route('users') }}",
                         processData: false,
                         contentType: false,
                         cache: false,
@@ -318,7 +344,7 @@ Gestion des Utilisateurs
                         },
                         error: function (data) {
                             console.log('Error:', data);
-                            $('#saveNewsBtn').html('Enregistrer');
+                            $('#saveUserBtn').html('Enregistrer');
                         }
                     });
                 });
@@ -331,27 +357,29 @@ Gestion des Utilisateurs
     }
 
     $(document).ready(function () {
-        loadNewsDatatable()
+        loadUsersDatatable()
 
-        // Create news modal
-        $('#createNewsBtn').click(function () {
+        // Create user modal
+        $('#createUserBtn').click(function () {
 
-            $(`#previewNewsImg`).prop('src', '')
-            $(`#newsImg`).prop('disabled', false)
+            $(`#previewUserImg`).prop('src', '')
+            $(`#userImg`).prop('disabled', false)
 
-            // Erase user information section for a new news 
+            // Erase user information section for a new user 
             $("#userInfoSection").html('')
 
             inputList.forEach((inputId) => {
                 $(`#${inputId}`).prop('disabled', false)
             })
 
-            $('#saveNewsBtn').html("Enregistrer");
-            $('#saveNewsBtn').show();
-            $('#newsId').val("");
-            $('#newsForm').trigger("reset");
-            $('#modalHeading').html("Création d'une nouvelle actualité");
-            $('#newsModal').modal('show');
+            $('password').prop('disabled', false)
+
+            $('#saveUserBtn').html("Enregistrer");
+            $('#saveUserBtn').show();
+            $('#userId').val("");
+            $('#userForm').trigger("reset");
+            $('#modalHeading').html("Création d'un nouveau utilisateur");
+            $('#userModal').modal('show');
         });
 
     })

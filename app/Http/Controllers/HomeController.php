@@ -25,8 +25,6 @@ class HomeController extends Controller
     {
         if(!$request->get('as'))
             return redirect()->route('menu');   
-        $permissions = [];
-        // $request->get('as');  
-        return view('dashboard.users', compact('permissions'));
+        return redirect('user'); 
     }
 }
