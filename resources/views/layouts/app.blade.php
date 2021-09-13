@@ -44,7 +44,7 @@
                         <!-- Authentication Links -->
                         @guest
                         <span>
-                            <a href="{{route('welcome')}}" class="float-end text-dark"> < acceuil </a>
+                            <a href="{{route('welcome')}}" class="float-end text-dark"> < reour à l'acceuil </a>
                         </span>
                             @if (Route::has('login'))
                                 <li class="nav-item">
