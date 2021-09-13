@@ -184,7 +184,7 @@ Gestion des Utilisateurs
     let datatableSettings = getDTSetting()
     let user_list = []
     let roles = JSON.parse(`<?= json_encode($roles) ?>`)
-    inputList = ['firstname', 'lastname', 'email', 'username', 'contact', 'prospector_card_num', 
+    inputList = ['firstname', 'lastname', 'email', 'username', 'contact', 'prospector_card_num',
         'cni', 'profession', 'status', 'dob', 'role'
     ]
 
@@ -225,7 +225,7 @@ Gestion des Utilisateurs
                         }
                     ],
                 )
-               
+
                 $('.showUser').click(e => {
                     e.preventDefault();
                     let userId = getResourceId(e.target)
@@ -260,7 +260,7 @@ Gestion des Utilisateurs
                     $('#modalHeading').html(user.firstname);
                     $('#userModal').modal('show');
                 })
-                
+
                 $('.editUser').click(function (e) {
                     e.preventDefault();
                     userId = getResourceId(e.target)
@@ -300,7 +300,7 @@ Gestion des Utilisateurs
                     if (!resp) return;
                     $.ajax({
                         type: 'DELETE',
-                        url: `{{ route('users') }}` + '/' + userId,
+                        url: `{{ route('users.store') }}` + '/' + userId,
                         data: {
                             _token: "{{ csrf_token() }}"
                         },
@@ -334,7 +334,7 @@ Gestion des Utilisateurs
 
                     $.ajax({
                         data: formData,
-                        url: "{{ route('users') }}",
+                        url: "{{ route('users.store') }}",
                         processData: false,
                         contentType: false,
                         cache: false,
@@ -365,7 +365,7 @@ Gestion des Utilisateurs
             $(`#previewUserImg`).prop('src', '')
             $(`#userImg`).prop('disabled', false)
 
-            // Erase user information section for a new user 
+            // Erase user information section for a new user
             $("#userInfoSection").html('')
 
             inputList.forEach((inputId) => {
