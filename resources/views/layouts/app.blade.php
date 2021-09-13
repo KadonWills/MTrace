@@ -44,20 +44,20 @@
                         <!-- Authentication Links -->
                         @guest
                         <span>
-                            <a href="{{route('welcome')}}" class="float-end text-dark"> < retour à l'acceuil </a>
+                            <a href="{{route('welcome')}}" class="float-end text-dark"> < retour à.. l'acceuil </a>
                         </span>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
-                            @endif 
+                            @endif
 
                             {{-- @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif --}}
-                            
+
                         @else
                             <li class="nav-item dropdown ">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
